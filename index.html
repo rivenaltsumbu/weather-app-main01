@@ -1,0 +1,219 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050529">
+  <meta name="description" content="Current weather and forecasts for cities around the world.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+
+  <title>Weather Now</title>
+</head>
+
+<body>
+  <main class="weather-app">
+
+    <!-- HEADER -->
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Weather Now home">
+        <img src="./assets/images/logo.svg" alt="Weather Now">
+      </a>
+
+      <!-- SETTINGS / UNITS -->
+      <div class="units-control">
+
+        <button class="units-trigger"
+          id="units-trigger"
+          type="button"
+          aria-expanded="false"
+          aria-controls="units-menu">
+
+          <img src="./assets/images/icon-units.svg" alt="">
+          <span>Units</span>
+          <span class="chevron" aria-hidden="true"></span>
+        </button>
+
+        <div class="units-menu" id="units-menu" hidden>
+
+          <p class="menu-title">Choose your measurement units</p>
+
+          <!-- TEMPERATURE -->
+          <fieldset>
+            <legend>Temperature</legend>
+
+            <label>
+              <input type="radio" name="temperature" value="celsius" checked>
+              <span>Celsius (°C)</span>
+            </label>
+
+            <label>
+              <input type="radio" name="temperature" value="fahrenheit">
+              <span>Fahrenheit (°F)</span>
+            </label>
+          </fieldset>
+
+          <!-- WIND SPEED -->
+          <fieldset>
+            <legend>Wind Speed</legend>
+
+            <label>
+              <input type="radio" name="wind" value="kmh" checked>
+              <span>Kilometers/hour (km/h)</span>
+            </label>
+
+            <label>
+              <input type="radio" name="wind" value="mph">
+              <span>Miles/hour (mph)</span>
+            </label>
+          </fieldset>
+
+          <!-- PRECIPITATION -->
+          <fieldset>
+            <legend>Precipitation</legend>
+
+            <label>
+              <input type="radio" name="precipitation" value="mm" checked>
+              <span>Millimeters (mm)</span>
+            </label>
+
+            <label>
+              <input type="radio" name="precipitation" value="inch">
+              <span>Inches (in)</span>
+            </label>
+          </fieldset>
+
+          <button class="apply-units" id="apply-units" type="button">
+            Apply Changes
+          </button>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- SEARCH -->
+    <section class="search-section" aria-labelledby="page-title">
+
+      <h1 id="page-title">How’s the sky looking today?</h1>
+
+      <form class="search-form" id="search-form">
+
+        <label class="search-field">
+          <img src="./assets/images/icon-search.svg" alt="">
+
+          <input
+            id="city-search"
+            name="city"
+            type="search"
+            placeholder="Search for a place..."
+            autocomplete="off"
+            required>
+        </label>
+
+        <button class="search-button" type="submit">
+          Search
+        </button>
+
+      </form>
+
+      <p class="search-message"
+        id="search-message"
+        role="status"
+        aria-live="polite">
+      </p>
+
+    </section>
+
+    <!-- WEATHER DASHBOARD -->
+    <section class="dashboard" aria-label="Weather forecast">
+
+      <div class="forecast-main">
+
+        <!-- CURRENT WEATHER -->
+        <article class="current-weather" aria-label="Current weather">
+
+          <div class="current-place">
+            <h2 id="location">Berlin, Germany</h2>
+            <p id="current-date">Loading local forecast…</p>
+          </div>
+
+          <div class="current-condition">
+            <img
+              id="current-icon"
+              src="./assets/images/icon-sunny.webp"
+              alt="Sunny">
+
+            <p id="current-temperature">--°</p>
+          </div>
+
+        </article>
+
+        <!-- WEATHER STATISTICS -->
+        <div class="weather-stats" aria-label="Current conditions">
+
+          <article class="stat-card">
+            <h3>Feels Like</h3>
+            <p id="feels-like">--°</p>
+          </article>
+
+          <article class="stat-card">
+            <h3>Humidity</h3>
+            <p id="humidity">--%</p>
+          </article>
+
+          <article class="stat-card">
+            <h3>Wind</h3>
+            <p id="wind">--</p>
+          </article>
+
+          <article class="stat-card">
+            <h3>Precipitation</h3>
+            <p id="precipitation">--</p>
+          </article>
+
+        </div>
+
+        <!-- DAILY FORECAST -->
+        <section class="daily-section" aria-labelledby="daily-title">
+
+          <h2 id="daily-title">Daily forecast</h2>
+
+          <div class="daily-forecast" id="daily-forecast"></div>
+
+        </section>
+
+      </div>
+
+      <!-- HOURLY FORECAST -->
+      <section class="hourly-panel" aria-labelledby="hourly-title">
+
+        <div class="hourly-heading">
+
+          <h2 id="hourly-title">Hourly forecast</h2>
+
+          <label class="day-select-label" for="day-select">
+
+            <span class="visually-hidden">
+              Select forecast day
+            </span>
+
+            <select id="day-select"></select>
+
+            <span class="chevron" aria-hidden="true"></span>
+
+          </label>
+
+        </div>
+
+        <div class="hourly-forecast" id="hourly-forecast"></div>
+
+      </section>
+
+    </section>
+
+  </main>
+</body>
+</html>
